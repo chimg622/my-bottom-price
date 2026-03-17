@@ -1,0 +1,19 @@
+<div class="container" style="padding: 20px; background-color: #f9fbfd;">
+  <h2 style="color: #457b9d; font-size: 1.2rem;">新しい店舗を登録</h2>
+
+  <%= form_with model: @shop, local: true do |f| %>
+    <div style="margin-bottom: 20px;">
+      <%= f.label :name, "店舗名", style: "display: block; font-size: 0.8rem; color: #666;" %>
+      <%= f.text_field :name, placeholder: "例：Aスーパー 〇〇店", style: "width: 100%; padding: 12px; border-radius: 8px; border: 1px solid #a8dadc;" %>
+    </div>
+
+    <div style="margin-bottom: 20px;">
+      <%= f.label :address, "住所（任意）", style: "display: block; font-size: 0.8rem; color: #666;" %>
+      <%= f.text_field :address, placeholder: "例：〇〇区△△町 1-2-3", style: "width: 100%; padding: 12px; border-radius: 8px; border: 1px solid #a8dadc;" %>
+    </div>
+
+    <%= f.submit "店舗を保存する", style: "width: 100%; padding: 16px; background-color: #457b9d; color: white; border: none; border-radius: 30px; font-weight: bold; cursor: pointer;" %>
+  <% end %>
+
+  <%= link_to "戻る", shops_path, style: "display: block; text-align: center; margin-top: 20px; color: #999; text-decoration: none;" %>
+</div>
