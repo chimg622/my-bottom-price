@@ -1,24 +1,68 @@
-# README
+## usersテーブル
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+|Column             |Type   |Options                  |
+|-------------------|-------|-------------------------|
+|email              |string |null: false, unique: true|
+|encrypted_password |string |null: false,             |
+|name               |string |null: false,             |
 
-Things you may want to cover:
+### Association
+has_many :prices
+has_many :shops
+has_many :items
+has_many :categories
 
-* Ruby version
 
-* System dependencies
+## pricesテーブル
 
-* Configuration
+|Column     |Type       |Options                        |
+|-----------|-----------|-------------------------------|
+|price      |integer    |null: false                    |
+|quantity   |integer    |null: false                    |
+|unit       |integer    |null: false, default: 0        |
+|unit_price |decimal    |precision: 10, scale: 2        |
+|user_id    |references |null: false, foreign_key: true |
+|shop_id    |references |null: false, foreign_key: true |
+|item_id    |references |null: false, foreign_key: true |
 
-* Database creation
+### Association
+belongs_to :user
+belongs_to :shop
+belongs_to :item
 
-* Database initialization
 
-* How to run the test suite
+## shopsテーブル
+|Column       |Type       |Options                        |
+|-------------|-----------|-------------------------------|
+|name         |string     |null: false                    |
+|address      |string     |null: true                     |
+|user_id      |references |null: false, foreign_key: true |
 
-* Services (job queues, cache servers, search engines, etc.)
+### Association
+belongs_to :user
+has_many :prices
 
-* Deployment instructions
 
-* ...
+## itemsテーブル
+|Column       |Type       |Options                        |
+|-------------|-----------|-------------------------------|
+|name         |string     |null: false                    |
+|unit         |integer    |null: false                    |
+|user_id      |references |null: false, foreign_key: true |
+|category_id  |references |null: false, foreign_key: true |
+
+### Association
+belongs_to :user
+belongs_to :category
+has_many :prices
+
+
+## categoriesテーブル
+|Column        |Type       |Options                         |
+|--------------|-----------|--------------------------------|
+|name          |string     |null: false                     |
+|user_id       |references |null: false, foreign_key: true  |
+
+### Association
+has_many :items
+belongs_to :user
