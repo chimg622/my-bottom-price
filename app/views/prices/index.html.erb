@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>お買い物価格DB</title>
+    <style>
+        :root {
+            --bg-color: #f9fbfd; /* 淡い青みがかった白 */
+            --main-color: #a8dadc; /* 淡いアクアブルー */
+            --accent-color: #457b9d; /* 落ち着いたブルー */
+            --text-color: #333;
+            --card-bg: #ffffff;
+        }
+        body {
+            font-family: sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            margin: 0;
+            padding-bottom: 70px; /* ナビ用余白 */
+        }
+        header {
+            padding: 20px;
+            text-align: center;
+            background: white;
+            font-weight: bold;
+            border-bottom: 1px solid #eee;
+        }
+        .container { padding: 15px; }
+
+        /* 検索窓 */
+        .search-box {
+            background: white;
+            border: 2px solid var(--main-color);
+            border-radius: 25px;
+            padding: 12px 20px;
+            margin-bottom: 25px;
+            display: flex;
+            align-items: center;
+        }
+
+        /* お気に入りセクション */
+        .section-title { font-size: 0.9rem; color: #666; margin-bottom: 10px; }
+        .grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+        }
+        .card {
+            background: var(--card-bg);
+            border-radius: 12px;
+            padding: 15px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            text-align: center;
+        }
+        .card .price { font-weight: bold; color: var(--accent-color); font-size: 1.1rem; }
+
+        /* 下部固定ボタン */
+        .fab {
+            position: fixed;
+            bottom: 85px;
+            right: 20px;
+            background: var(--accent-color);
+            color: white;
+            padding: 15px 25px;
+            border-radius: 30px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        /* ボトムナビゲーション */
+        .nav {
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            height: 60px;
+            background: white;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            border-top: 1px solid #eee;
+        }
+        .nav-item { font-size: 0.7rem; color: #999; text-align: center; text-decoration: none; }
+    </style>
+</head>
+<body>
+
+<header>My Price DB</header>
+
+<div class="container">
+    <div class="search-box">
+        🔍 商品名で底値を検索...
+    </div>
+
+    <div class="section-title">お気に入り / よく買う商品</div>
+    <div class="grid">
+        <div class="card">
+            <div>牛乳 1L</div>
+            <div class="price">底値: ¥178</div>
+        </div>
+        <div class="card">
+            <div>卵 10個</div>
+            <div class="price">底値: ¥198</div>
+        </div>
+        <div class="card">
+            <div>ティッシュ</div>
+            <div class="price">底値: ¥320</div>
+        </div>
+        <!-- Railsのeach文でループさせるイメージ -->
+    </div>
+</div>
+
+<a href="#" class="fab">＋ 価格を記録</a>
+
+<nav class="nav">
+    <a href="#" class="nav-item">🏠<br>ホーム</a>
+    <a href="#" class="nav-item">📊<br>履歴</a>
+    <a href="#" class="nav-item">🏪<br>店舗</a>
+    <a href="#" class="nav-item">👤<br>設定</a>
+</nav>
+
+</body>
+</html>
