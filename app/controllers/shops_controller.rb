@@ -1,5 +1,11 @@
 class ShopsController < ApplicationController
   before_action :authenticate_user!
+
+  def index
+    # 登録した順（新しい順）に店舗を取得
+    @shops = current_user.shops.order(created_at: :desc)
+  end
+
   def new
     @shop = Shop.new
   end

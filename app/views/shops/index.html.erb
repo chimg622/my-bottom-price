@@ -1,0 +1,37 @@
+<div style="padding: 20px; background-color: #f9fbfd; min-height: 100vh;">
+  <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+    <h2 style="color: #457b9d; font-size: 1.2rem; margin: 0;">登録したお店一覧</h2>
+    <%= link_to "+ 追加", new_shop_path, style: "background: #a8dadc; color: #457b9d; padding: 8px 15px; border-radius: 20px; text-decoration: none; font-size: 0.8rem; font-weight: bold;" %>
+  </div>
+
+  <% if @shops.any? %>
+    <% @shops.each do |shop| %>
+      <div style="background: white; border-radius: 12px; padding: 15px; margin-bottom: 12px; box-shadow: 0 2px 5px rgba(0,0,0,0.05); border-left: 5px solid #a8dadc;">
+        <div style="display: flex; justify-content: space-between; align-items: center;">
+          <div>
+            <div style="font-weight: bold; font-size: 1.1rem; color: #333; margin-bottom: 4px;">
+              <%= shop.name %>
+            </div>
+            <% if shop.address.present? %>
+              <div style="font-size: 0.75rem; color: #999;">
+                📍 <%= shop.address %>
+              </div>
+            <% end %>
+          </div>
+          
+          <div style="text-align: right; color: #457b9d;">
+             <%# 将来的に「この店での記録数」などを出すと面白いです %>
+             <span style="font-size: 0.7rem; color: #999;">登録済み</span>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  <% else %>
+    <div style="text-align: center; color: #999; margin-top: 50px;">
+      <p>まだお店が登録されていません</p>
+      <%= link_to "最初のお店を登録する", new_shop_path, style: "color: #457b9d; font-weight: bold;" %>
+    </div>
+  <% end %>
+
+  <%= link_to "トップへ戻る", root_path, style: "display: block; text-align: center; margin-top: 30px; color: #999; text-decoration: none; font-size: 0.9rem;" %>
+</div>

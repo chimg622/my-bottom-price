@@ -1,15 +1,41 @@
-/*
- * This is a manifest file that'll be compiled into application.css, which will include all the files
- * listed below.
- *
- * Any CSS (and SCSS, if configured) file within this directory, lib/assets/stylesheets, or any plugin's
- * vendor/assets/stylesheets directory can be referenced here using a relative path.
- *
- * You're free to add application-wide styles to this file and they'll appear at the bottom of the
- * compiled file so the styles you add here take precedence over styles defined in any other CSS
- * files in this directory. Styles in this file should be added after the last require_* statement.
- * It is generally better to create a new file per style scope.
- *
- *= require_tree .
- *= require_self
- */
+/* 認証画面共通のコンテナ */
+.auth-container {
+  padding: 40px 20px;
+  background-color: #f9fbfd;
+  min-height: 100vh;
+  text-align: center;
+}
+
+/* 入力フィールド */
+.auth-input {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 20px;
+  border-radius: 8px;
+  border: 1px solid #a8dadc;
+  box-sizing: border-box;
+}
+
+/* メインのボタン */
+.auth-btn {
+  width: 100%;
+  padding: 15px;
+  background-color: #457b9d;
+  color: white;
+  border: none;
+  border-radius: 30px;
+  font-weight: bold;
+  font-size: 1rem;
+  margin-top: 10px;
+  box-shadow: 0 4px 10px rgba(69,123,157,0.2);
+}
+
+/* 下部のリンク */
+.auth-links {
+  margin-top: 25px;
+  font-size: 0.85rem;
+}
+.auth-links a {
+  color: #457b9d;
+  text-decoration: none;
+}
