@@ -23,7 +23,14 @@
           </div>
           <%# ここに将来「最新の底値」を表示するとカッコよくなります %>
           <div style="text-align: right; color: #457b9d;">
-            <%= link_to "価格を記録 >", new_price_path(item_id: item.id), style: "font-size: 0.8rem; text-decoration: none; font-weight: bold; color: #457b9d;" %>
+            <%= link_to "価格を記録 >", new_price_path(item_id: item.id), style: "text-decoration: none; color: inherit;"%>
+            <%# 修正後：カード自体をタップしたら比較画面へ飛ぶようにするとUXが良いです %>
+            <%= link_to prices_path(item_id: item.id), style: "text-decoration: none; color: inherit;" do %>
+              <div style="text-align: right; color: #457b9d;">
+                <!-- カードの中身 -->
+                <div style="color: #457b9d; font-weight: bold;">底値をチェック ></div>
+              </div>
+            <% end %>
           </div>
         </div>
       </div>
