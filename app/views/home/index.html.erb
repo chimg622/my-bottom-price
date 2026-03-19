@@ -1,0 +1,93 @@
+<div style="padding: 20px; background-color: #f9fbfd; min-height: 100vh; padding-bottom: 80px;">
+  
+  <% if user_signed_in? %>
+    <div style="margin-bottom: 30px;">
+      <h2 style="color: #457b9d; font-size: 1.3rem;">こんにちは、<%= current_user.name %>さん</h2>
+      <p style="font-size: 0.8rem; color: #666;">今日の買い物も「納得感」を大切に。</p>
+    </div>
+
+    <div style="margin-bottom: 30px;">
+      <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px;">
+    
+        <%# 価格を記録する（メインのアクション） %>
+        <%= link_to new_price_path, style: "text-decoration: none;" do %>
+          <div style="background: white; padding: 15px 5px; border-radius: 15px; border: 1px solid #a8dadc; text-align: center; box-shadow: 0 2px 8px rgba(168,218,220,0.2);">
+            <div style="font-size: 1.5rem; margin-bottom: 5px;">📝</div>
+            <div style="font-size: 0.75rem; font-weight: bold; color: #457b9d;">価格記録</div>
+          </div>
+        <% end %>
+
+        <%# 商品一覧 %>
+        <%= link_to items_path, style: "text-decoration: none;" do %>
+          <div style="background: white; padding: 15px 5px; border-radius: 15px; border: 1px solid #a8dadc; text-align: center; box-shadow: 0 2px 8px rgba(168,218,220,0.2);">
+            <div style="font-size: 1.5rem; margin-bottom: 5px;">📦</div>
+            <div style="font-size: 0.75rem; font-weight: bold; color: #457b9d;">商品リスト</div>
+          </div>
+        <% end %>
+
+        <%# 店舗一覧（まだ作成中なら仮のリンクでもOK） %>
+        <%= link_to shops_path, style: "text-decoration: none;" do %>
+          <div style="background: white; padding: 15px 5px; border-radius: 15px; border: 1px solid #a8dadc; text-align: center; box-shadow: 0 2px 8px rgba(168,218,220,0.2);">
+            <div style="font-size: 1.5rem; margin-bottom: 5px;">🏪</div>
+            <div style="font-size: 0.75rem; font-weight: bold; color: #457b9d;">お店管理</div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+
+
+    <%# クイックアクション：一番目立つボタン %>
+    <%= link_to new_price_path, style: "text-decoration: none;" do %>
+      <div style="background: #457b9d; color: white; padding: 20px; border-radius: 15px; text-align: center; box-shadow: 0 4px 15px rgba(69,123,157,0.3); margin-bottom: 30px;">
+        <span style="font-size: 1.5rem; display: block; margin-bottom: 5px;">➕</span>
+        <span style="font-weight: bold; font-size: 1.1rem;">今すぐ価格を記録する</span>
+      </div>
+    <% end %>
+
+    <%# 最近登録した商品 %>
+    <div style="margin-bottom: 25px;">
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+        <h3 style="font-size: 0.9rem; color: #666; margin: 0;">最近の商品</h3>
+        <%= link_to "すべて見る", items_path, style: "font-size: 0.8rem; color: #457b9d; text-decoration: none;" %>
+      </div>
+      <div style="display: flex; gap: 10px; overflow-x: auto; padding-bottom: 10px;">
+        <% @recent_items.each do |item| %>
+          <%= link_to prices_path(item_id: item.id), style: "text-decoration: none; min-width: 120px;" do %>
+            <div style="background: white; padding: 12px; border-radius: 10px; border: 1px solid #a8dadc; text-align: center;">
+              <div style="font-size: 0.9rem; font-weight: bold; color: #333; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
+                <%= item.name %>
+              </div>
+              <div style="font-size: 0.7rem; color: #999;"><%= item.category.name %></div>
+            </div>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+
+    <%# 最近の記録履歴 %>
+    <div>
+      <h3 style="font-size: 0.9rem; color: #666; margin-bottom: 10px;">最近の記録</h3>
+      <% @recent_prices.each do |price| %>
+        <div style="background: white; border-radius: 10px; padding: 12px; margin-bottom: 8px; display: flex; justify-content: space-between; align-items: center; border-left: 4px solid #a8dadc;">
+          <div>
+            <div style="font-size: 0.8rem; font-weight: bold; color: #333;"><%= price.item.name %></div>
+            <div style="font-size: 0.7rem; color: #999;"><%= price.shop.name %></div>
+          </div>
+          <div style="text-align: right;">
+            <div style="font-size: 0.9rem; color: #457b9d; font-weight: bold;">¥<%= price.price %></div>
+            <div style="font-size: 0.6rem; color: #999;"><%= price.created_at.strftime("%m/%d") %></div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+
+  <% else %>
+    <%# 未ログイン時の表示 %>
+    <div style="text-align: center; margin-top: 100px;">
+      <h1 style="color: #457b9d;">My Price DB</h1>
+      <p style="color: #666;">自分だけの底値帳で、<br>賢い買い物を始めよう。</p>
+      <%= link_to "新規登録", new_user_registration_path, style: "display: block; background: #457b9d; color: white; padding: 15px; border-radius: 30px; text-decoration: none; margin: 20px 0;" %>
+      <%= link_to "ログイン", new_user_session_path, style: "color: #457b9d; text-decoration: none;" %>
+    </div>
+  <% end %>
+</div>

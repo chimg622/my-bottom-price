@@ -1,6 +1,17 @@
 # app/controllers/prices_controller.rb
 class PricesController < ApplicationController
   before_action :authenticate_user!
+  def index
+    if params[:item_id]
+      # 特定の商品が選択されている場合：底値比較モード
+      @item = current_user.items.find(params[:item_id])
+      # 単位価格(unit_price)が安い順に並べる
+      @prices = @item.prices.includes(:shop).order(unit_price: :asc)
+    else
+      # 商品指定がない場合：最近の記録一覧モード
+      @prices = current_user.prices.includes(:item, :shop).order(created_at: :desc)
+    end
+  end
 
   def new
     @price = Price.new
