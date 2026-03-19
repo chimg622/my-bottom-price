@@ -1,0 +1,40 @@
+<div style="padding: 20px; background-color: #f9fbfd; min-height: 100vh;">
+  <h2 style="color: #457b9d; font-size: 1.1rem; margin-bottom: 20px;">価格を記録する</h2>
+
+  <%= form_with model: @price, local: true do |f| %>
+    
+    <%# 商品選択 %>
+    <div style="margin-bottom: 15px;">
+      <%= f.label :item_id, "商品名", style: "font-size: 0.8rem; color: #666;" %>
+      <%= f.collection_select :item_id, @items, :id, :name, { prompt: "選択してください" }, { style: "width: 100%; padding: 12px; border-radius: 8px; border: 1px solid #a8dadc;" } %>
+    </div>
+
+    <%# 店舗選択 %>
+    <div style="margin-bottom: 15px;">
+      <%= f.label :shop_id, "購入店舗", style: "font-size: 0.8rem; color: #666;" %>
+      <%= f.collection_select :shop_id, @shops, :id, :name, { prompt: "選択してください" }, { style: "width: 100%; padding: 12px; border-radius: 8px; border: 1px solid #a8dadc;" } %>
+    </div>
+
+    <div style="display: flex; gap: 15px; margin-bottom: 15px;">
+      <%# 価格入力（数字キーボード表示） %>
+      <div style="flex: 1;">
+        <%= f.label :price, "価格(税込)", style: "font-size: 0.8rem; color: #666;" %>
+        <%= f.number_field :price, inputmode: "numeric", placeholder: "298", style: "width: 100%; padding: 12px; border-radius: 8px; border: 1px solid #a8dadc;" %>
+      </div>
+      <%# 数量入力 %>
+      <div style="flex: 1;">
+        <%= f.label :quantity, "内容量", style: "font-size: 0.8rem; color: #666;" %>
+        <%= f.number_field :quantity, inputmode: "numeric", placeholder: "800", style: "width: 100%; padding: 12px; border-radius: 8px; border: 1px solid #a8dadc;" %>
+      </div>
+    </div>
+
+    <%# 単位選択 %>
+    <div style="margin-bottom: 30px;">
+      <%= f.label :unit, "単位", style: "font-size: 0.8rem; color: #666;" %>
+      <%= f.select :unit, Price.units.keys.map { |k| [k, k] }, {}, { style: "width: 100%; padding: 12px; border-radius: 8px; border: 1px solid #a8dadc; background: white;" } %>
+    </div>
+
+    <%= f.submit "この価格で保存", style: "width: 100%; padding: 16px; background-color: #457b9d; color: white; border: none; border-radius: 30px; font-weight: bold; font-size: 1rem;" %>
+
+  <% end %>
+</div>
