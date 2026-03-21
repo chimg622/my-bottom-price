@@ -1,0 +1,21 @@
+<div class="bottom-nav">
+  <%= link_to root_path, class: "nav-item #{'active' if current_page?(root_path)}" do %>
+    <span class="nav-icon">🏠</span>ホーム
+  <% end %>
+
+  <%= link_to shops_path, class: "nav-item #{'active' if current_page?(shops_path)}" do %>
+    <span class="nav-icon">🏬</span>お店一覧
+  <% end %>
+
+  <%= link_to items_path, class: "nav-item #{'active' if current_page?(items_path)}" do %>
+    <span class="nav-icon">🛒</span>商品一覧
+  <% end %>
+
+  <%= link_to new_price_path, class: "nav-item #{'active' if controller_name == 'prices' && action_name == 'new'}" do %>
+    <span class="nav-icon">💸</span>価格登録
+  <% end %>
+
+  <%= link_to user_path, class: "nav-item #{'active' if current_page?(user_path)}" do %>
+    <span class="nav-icon">🧸</span>マイページ
+  <% end %>
+</div>

@@ -1,34 +1,24 @@
-# app/controllers/prices_controller.rb
 class PricesController < ApplicationController
   before_action :authenticate_user!
   def index
     if params[:item_id]
-      # 特定の商品が選択されている場合：底値比較モード
       @item = current_user.items.find(params[:item_id])
-      # 単位価格(unit_price)が安い順に並べる
       @prices = @item.prices.includes(:shop).order(unit_price: :asc)
     else
-      # 商品指定がない場合：最近の記録一覧モード
       @prices = current_user.prices.includes(:item, :shop).order(created_at: :desc)
     end
   end
 
   def new
     @price = Price.new
-    # プルダウン用のデータ準備
     @items = current_user.items
     @shops = current_user.shops
-
-    # もし「商品一覧」から遷移してきた場合、商品を選択状態にする
     @price.item_id = params[:item_id] if params[:item_id]
   end
 
   def create
     @price = current_user.prices.build(price_params)
-
-    # 保存前に「単位価格(unit_price)」を計算してセットする
     if @price.price.present? && @price.quantity.present? && @price.quantity > 0
-      # 100g/mlあたりの計算（単位が"個"なら1個あたり）
       base = @price.unit == 'piece' ? 1 : 100
       @price.unit_price = (@price.price.to_f / @price.quantity) * base
     end
