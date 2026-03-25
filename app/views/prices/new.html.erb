@@ -55,7 +55,7 @@
 
         <%# 3. 計算結果を表示する場所 (data-price-calculator-target) %>
         <div style="background: #f1faee; padding: 15px; border-radius: 10px; text-align: center; margin-bottom: 20px;">
-          <span style="font-size: 0.8rem; color: #666;">100単位あたりの参考単価</span>
+          <span style="font-size: 0.8rem; color: #666;">100gramあたりの参考単価</span>
           <div style="font-size: 1.5rem; font-weight: bold; color: #457b9d;" data-price-calculator-target="result">
             ¥0
           </div>
@@ -64,10 +64,6 @@
         <%= f.submit "保存する", class: "auth-btn" %>
       <% end %>
     </div>
-
-
-    <%= f.submit "この価格で保存", style: "width: 100%; padding: 16px; background-color: #457b9d; color: white; border: none; border-radius: 30px; font-weight: bold; font-size: 1rem;" %>
-
   <% end %>
 </div>
 <%= render "shared/footer" %>
