@@ -3,7 +3,7 @@ import { Controller } from "@hotwired/stimulus"
 export default class extends Controller {
   // 画面上の要素（ターゲット）を定義
   static get targets() {
-    return [ "price", "quantity", "unit", "result" ]
+    return [ "price", "quantity", "unit", "result", "unitLabel" ]
   }
 
   // 入力があった時に実行される関数
@@ -11,6 +11,12 @@ export default class extends Controller {
     const price = parseFloat(this.priceTarget.value)
     const quantity = parseFloat(this.quantityTarget.value)
     const unit = this.unitTarget.value
+
+    // 単位ラベルの更新
+    if (this.hasUnitLabelTarget) {
+      const label = (unit === "piece") ? "1piece" : `100${unit}`
+      this.unitLabelTarget.textContent = label
+    }
 
     if (price > 0 && quantity > 0) {
       // 単位が "piece(個)" なら 1個あたり、それ以外(ml/g)なら 100あたりの単価

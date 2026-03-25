@@ -19,14 +19,14 @@
 
         <div style="display: flex; justify-content: space-between; align-items: center;">
           <div>
-            <div style="font-size: 0.8rem; color: #666;"><%= price.shop.name %></div>
+            <div style="font-size: 1rem; font-weight: bold; color: #666;"><%= price.shop.name %></div>
             <div style="font-size: 0.7rem; color: #999;"><%= price.created_at.strftime("%Y/%m/%d") %></div>
           </div>
           
           <div style="text-align: right;">
             <div style="font-size: 1.2rem; font-weight: bold; color: #457b9d;">
               ¥<%= price.unit_price.to_f.round(1) %>
-              <span style="font-size: 0.7rem; font-weight: normal;"> / 100<%= price.unit %></span>
+              <span style="font-size: 0.7rem; font-weight: normal;"> / <%= price.unit == "piece" ? "1piece" : "100#{price.unit}" %></span>
             </div>
             <div style="font-size: 0.7rem; color: #999;">
               (税込 ¥<%= price.price %> / <%= price.quantity %><%= price.unit %>)
