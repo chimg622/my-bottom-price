@@ -1,0 +1,146 @@
+.home{
+  padding: 20px; 
+  background-color: #f9fbfd; 
+  min-height: 100vh; 
+  padding-bottom: 80px;
+}
+
+.home-header{
+  margin-bottom: 30px;
+}
+
+.home-title{
+  color: #457b9d; 
+  font-size: 1.3rem;
+}
+
+.home-sub-title{
+  font-size: 0.8rem; 
+  color: #666;
+}
+
+.home-btn{
+  text-decoration: none;
+}
+
+.home-btn-content{
+  background: #457b9d; 
+  color: white; 
+  padding: 20px; 
+  border-radius: 15px; 
+  text-align: center; 
+  box-shadow: 0 4px 15px rgba(69,123,157,0.3); 
+  margin-bottom: 30px;
+}
+
+.home-btn-icon{
+  font-size: 1.5rem; 
+  display: block; 
+  margin-bottom: 5px;
+}
+
+.home-btn-text{
+  font-weight: bold; 
+  font-size: 1.1rem;
+}
+
+.home-items{
+  margin-bottom: 25px;
+}
+
+.home-items-contents{
+  display: flex; 
+  justify-content: space-between; 
+  align-items: center; 
+  margin-bottom: 10px;
+}
+
+.home-items-title{
+  font-size: 0.9rem; 
+  color: #666; 
+  margin: 0;
+}
+
+.home-items-link{
+  font-size: 0.8rem; 
+  color: #457b9d; 
+  text-decoration: none;
+}
+
+.home-item{
+  display: flex; 
+  gap: 10px; 
+  overflow-x: auto; 
+  padding-bottom: 10px;
+}
+
+.home-item-content{
+  text-decoration: none; 
+  min-width: 120px;
+}
+
+.home-item-names{
+  background: white; 
+  padding: 12px; 
+  border-radius: 10px; 
+  border: 1px solid #a8dadc; 
+  text-align: center;
+}
+
+.home-item-name{
+  font-size: 0.9rem; 
+  font-weight: bold; 
+  color: #333; 
+  white-space: nowrap; 
+  overflow: hidden; 
+  text-overflow: ellipsis;
+}
+
+.home-item-category{
+  font-size: 0.7rem; 
+  color: #999;
+}
+
+.home-prices-title{
+  font-size: 0.9rem; 
+  color: #666; 
+  margin-bottom: 10px;
+}
+
+.home-prices-contents{
+  background: white; 
+  border-radius: 10px; 
+  padding: 12px; 
+  margin-bottom: 8px; 
+  display: flex; 
+  justify-content: space-between; 
+  align-items: center; 
+  border-left: 4px solid #a8dadc;
+}
+
+.home-sign{
+  text-align: center; 
+  margin-top: 100px;
+}
+.home-sign-title{
+  color: #457b9d;
+}
+
+.home-sign-subtitle{
+  color: #666;
+}
+
+.sign-up{
+  display: block; 
+  background: #457b9d; 
+  color: white; 
+  padding: 15px; 
+  border-radius: 30px; 
+  text-decoration: none; 
+  margin: 20px 0;
+}
+
+.sign-in{
+  color: #457b9d; 
+  text-decoration: none;
+}

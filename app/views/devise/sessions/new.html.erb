@@ -1,5 +1,5 @@
 <div class="auth-container">
-  <h2 style="color: #457b9d; margin-bottom: 30px;">ログイン</h2>
+  <h2 class="registration-main">ログイン</h2>
 
  <%= form_with model: @user, url: user_session_path, local: true do |f| %>
 
@@ -7,12 +7,12 @@
       <%= flash[:notice] %>
       <%= flash[:alert] %>
     </div>
-    
+
     <%= f.email_field :email, autofocus: true, placeholder: "メールアドレス", class: "auth-input" %>
     <%= f.password_field :password, placeholder: "パスワード", class: "auth-input" %>
 
     <% if devise_mapping.rememberable? %>
-      <div style="text-align: left; margin-bottom: 20px; font-size: 0.8rem; color: #666;">
+      <div class="remember-me">
         <%= f.check_box :remember_me %> ログイン状態を保持する
       </div>
     <% end %>

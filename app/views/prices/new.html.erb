@@ -24,7 +24,7 @@
         <%# 2. 入力項目にターゲットとアクションを設定 (data-price-calculator-target / data-action) %>
         <div style="display: flex; gap: 10px;">
           <div>
-            <%= f.label :price, "価格" %>
+            <%= f.label :price, "価格", style: "font-size: 0.8rem; color: #666;" %>
             <%= f.number_field :price, 
                 data: { 
                   price_calculator_target: "price", 
@@ -33,7 +33,7 @@
                 class: "auth-input" %>
           </div>
           <div>
-            <%= f.label :quantity, "内容量" %>
+            <%= f.label :quantity, "内容量", style: "font-size: 0.8rem; color: #666;" %>
             <%= f.number_field :quantity, 
                 data: { 
                   price_calculator_target: "quantity", 
@@ -44,7 +44,7 @@
         </div>
 
         <div>
-          <%= f.label :unit, "単位" %>
+          <%= f.label :unit, "単位", style: "font-size: 0.8rem; color: #666;" %>
           <%= f.select :unit, Price.units.keys.map { |k| [k, k] }, {}, 
               data: { 
                 price_calculator_target: "unit", 
@@ -55,7 +55,7 @@
 
         <%# 3. 計算結果を表示する場所 (data-price-calculator-target) %>
         <div style="background: #f1faee; padding: 15px; border-radius: 10px; text-align: center; margin-bottom: 20px;">
-          <span style="font-size: 0.8rem; color: #666;"><span data-price-calculator-target="unitLabel">100gram</span>あたりの参考単価</span>
+          <span style="font-size: 0.8rem; color: #666;"><span data-price-calculator-target="unitLabel">100gram</span>あたりの価格</span>
           <div style="font-size: 1.5rem; font-weight: bold; color: #457b9d;" data-price-calculator-target="result">
             ¥0
           </div>

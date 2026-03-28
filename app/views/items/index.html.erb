@@ -1,48 +1,40 @@
 <%= render "shared/header" %>
-<div style="padding: 20px; background-color: #f9fbfd; min-height: 100vh;">
-  <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
-    <h2 style="color: #457b9d; font-size: 1.2rem; margin: 0;">登録した商品一覧</h2>
-    <%= link_to "+ 追加", new_item_path, style: "background: #a8dadc; color: #457b9d; padding: 8px 15px; border-radius: 20px; text-decoration: none; font-size: 0.8rem; font-weight: bold;" %>
+<div class="item-container">
+  <div class="item-header">
+    <h2 class="item-title">登録した商品一覧</h2>
+    <%= link_to "+ 追加", new_item_path, class: "item-add-button" %>
   </div>
 
   <% if @items.any? %>
     <% @items.each do |item| %>
-      <div style="background: white; border-radius: 12px; padding: 15px; margin-bottom: 12px; box-shadow: 0 2px 5px rgba(0,0,0,0.05); border-left: 5px solid #a8dadc;">
-        <div style="display: flex; justify-content: space-between; align-items: flex-start;">
-          <div>
-            <div style="font-weight: bold; font-size: 1.1rem; color: #333; margin-bottom: 4px;">
+      <div class="item-lists">
+        <div class="item-list">
+            <div class="item-list-name">
               <%= item.name %>
             </div>
-            <div style="display: flex; gap: 8px; align-items: center;">
-              <span style="font-size: 0.7rem; background: #f1faee; color: #457b9d; padding: 2px 8px; border-radius: 4px; border: 1px solid #a8dadc;">
+            <div class="item-list-category">
+              <span class="item-list-category-name">
                 <%= item.category.name %>
               </span>
-              <span style="font-size: 0.7rem; color: #999;">
+              <span class="item-list-unit">
                 基本単位: <%= item.unit %>
               </span>
             </div>
-          </div>
-          <%# ここに将来「最新の底値」を表示するとカッコよくなります %>
-          <div style="text-align: right; color: #457b9d;">
-            <%= link_to "価格を記録 >", new_price_path(item_id: item.id), style: "text-decoration: none; color: inherit;"%>
-            <%# 修正後：カード自体をタップしたら比較画面へ飛ぶようにするとUXが良いです %>
-            <%= link_to prices_path(item_id: item.id), style: "text-decoration: none; color: inherit;" do %>
-              <div style="text-align: right; color: #457b9d;">
-                <!-- カードの中身 -->
-                <div style="color: #457b9d; font-weight: bold;">底値をチェック ></div>
-              </div>
-            <% end %>
+
+          <div class="item-list-prices">
+            <%= link_to "価格を記録 >", new_price_path(item_id: item.id), class: "item-list-price" %>
+            <%= link_to "底値をチェック >", prices_path(item_id: item.id), class: "item-list-btm-price" %>
           </div>
         </div>
       </div>
     <% end %>
   <% else %>
-    <div style="text-align: center; color: #999; margin-top: 50px;">
+    <div class="item-lists-empty">
       <p>まだ商品が登録されていません</p>
-      <%= link_to "最初の商品を登録する", new_item_path, style: "color: #457b9d; font-weight: bold;" %>
+      <%= link_to "最初の商品を登録する", new_item_path, class: "new-item-button" %>
     </div>
   <% end %>
 
-  <%= link_to "トップへ戻る", root_path, style: "display: block; text-align: center; margin-top: 30px; color: #999; text-decoration: none; font-size: 0.9rem;" %>
+  <%= link_to "トップへ戻る", root_path, class: "back-to-top" %>
 </div>
 <%= render "shared/footer" %>

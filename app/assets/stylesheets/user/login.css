@@ -5,3 +5,10 @@
   color: rgb(182, 48, 0);
   margin-bottom: 5vh;
 }
+
+.remember-me{
+  text-align: left; 
+  margin-bottom: 20px; 
+  font-size: 0.8rem; 
+  color: #666;
+}
