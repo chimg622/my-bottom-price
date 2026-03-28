@@ -1,32 +1,31 @@
 <%= render "shared/header" %>
-<div style="padding: 20px; background-color: #f9fbfd; min-height: 100vh;">
-  <h2 style="color: #457b9d; font-size: 1.2rem; margin-bottom: 20px;">マイページ</h2>
+<div class="user-container">
+  <h2 class="user-title">マイページ</h2>
 
   <% # ユーザー基本情報カード %>
-  <div style="background: white; border-radius: 15px; padding: 20px; margin-bottom: 25px; box-shadow: 0 2px 10px rgba(0,0,0,0.05); text-align: center;">
-    <div style="font-size: 3rem; margin-bottom: 10px;">👤</div>
-    <div style="font-weight: bold; font-size: 1.2rem; color: #333;"><%= @user.name %></div>
-    <div style="font-size: 0.8rem; color: #999; margin-bottom: 15px;"><%= @user.email %></div>
-    <%= link_to "プロフィールを編集", edit_user_registration_path, style: "display: inline-block; font-size: 0.8rem; color: #457b9d; text-decoration: none; border: 1px solid #a8dadc; padding: 5px 15px; border-radius: 20px;" %>
+  <div class="user-card">
+    <div class="user-card-icon">👤</div>
+    <div class="user-card-name"><%= @user.name %></div>
+    <div class="user-card-email"><%= @user.email %></div>
+    <%= link_to "プロフィールを編集", edit_user_registration_path, class: "user-card-edit" %>
   </div>
 
   <% # 統計データ %>
-  <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-bottom: 30px;">
-    <div style="background: white; padding: 10px; border-radius: 10px; text-align: center; border: 1px solid #f1faee;">
-      <div style="font-size: 0.7rem; color: #999;">店舗</div>
-      <div style="font-weight: bold; color: #457b9d;"><%= @shops_count %></div>
+  <div class="user-stats">
+    <div class="user-stats-box">
+      <div class="user-stats-title">店舗</div>
+      <div class="user-stats-count"><%= @shops_count %></div>
     </div>
-    <div style="background: white; padding: 10px; border-radius: 10px; text-align: center; border: 1px solid #f1faee;">
-      <div style="font-size: 0.7rem; color: #999;">商品</div>
-      <div style="font-weight: bold; color: #457b9d;"><%= @items_count %></div>
+    <div class="user-stats-box">
+      <div class="user-stats-title">商品</div>
+      <div class="user-stats-count"><%= @items_count %></div>
     </div>
-    <div style="background: white; padding: 10px; border-radius: 10px; text-align: center; border: 1px solid #f1faee;">
-      <div style="font-size: 0.7rem; color: #999;">記録</div>
-      <div style="font-weight: bold; color: #457b9d;"><%= @prices_count %></div>
+    <div class="user-stats-box">
+      <div class="user-stats-title">記録</div>
+      <div class="user-stats-count"><%= @prices_count %></div>
     </div>
   </div>
 
-  <% # ログアウトボタン（赤系の淡い色で区別） %>
-  <%= button_to "ログアウト", destroy_user_session_path, method: :delete, data: { turbo: false }, style: "width: 100%; padding: 15px; background: #fff5f5; color: #c53030; border: 1px solid #feb2b2; border-radius: 30px; font-weight: bold; font-size: 0.9rem;" %>
+  <%= button_to "ログアウト", destroy_user_session_path, method: :delete, data: { turbo: false }, class: "user-logout" %>
 </div>
 <%= render "shared/footer" %>

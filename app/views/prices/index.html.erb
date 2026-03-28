@@ -1,34 +1,30 @@
 <%= render "shared/header" %>
-<div style="padding: 20px; background-color: #f9fbfd; min-height: 100vh;">
+<div class="price-container">
   
   <% if @item %>
-    <h2 style="color: #457b9d; font-size: 1.2rem; margin-bottom: 5px;"><%= @item.name %> の底値比較</h2>
-    <p style="font-size: 0.8rem; color: #666; margin-bottom: 20px;">単位あたりの価格が安い順に表示しています</p>
-  <% else %>
-    <h2 style="color: #457b9d; font-size: 1.2rem; margin-bottom: 20px;">価格記録の履歴</h2>
+    <h2 class="price-title"><%= @item.name %> の底値比較</h2>
+    <p class="price-sub-title">単位あたりの価格が安い順に表示しています</p>
   <% end %>
 
   <% if @prices.any? %>
     <% @prices.each_with_index do |price, index| %>
-      <div style="background: white; border-radius: 12px; padding: 15px; margin-bottom: 12px; position: relative; border: 1px solid <%= index == 0 && @item ? '#ffd700' : '#eee' %>;">
-        
-        <%# 底値（一番上）だけに王冠ラベルを表示 %>
+      <div class="price-lists", style="border: 1px solid <%= index == 0 && @item ? '#ffd700' : '#eee' %>;">
         <% if index == 0 && @item %>
-          <span style="position: absolute; top: -10px; left: 10px; background: #ffd700; color: #333; font-size: 0.7rem; font-weight: bold; padding: 2px 8px; border-radius: 10px;">👑 最安値</span>
+          <span class="price-lists-rank">👑 最安値</span>
         <% end %>
 
-        <div style="display: flex; justify-content: space-between; align-items: center;">
+        <div class="price-lists-box">
           <div>
-            <div style="font-size: 1rem; font-weight: bold; color: #666;"><%= price.shop.name %></div>
-            <div style="font-size: 0.7rem; color: #999;"><%= price.created_at.strftime("%Y/%m/%d") %></div>
+            <div class="price-lists-shop"><%= price.shop.name %></div>
+            <div class="price-lists-date"><%= price.created_at.strftime("%Y/%m/%d") %></div>
           </div>
           
-          <div style="text-align: right;">
-            <div style="font-size: 1.2rem; font-weight: bold; color: #457b9d;">
+          <div class="price-lists-price">
+            <div class="price-lists-unit-price">
               ¥<%= price.unit_price.to_f.round(1) %>
-              <span style="font-size: 0.7rem; font-weight: normal;"> / <%= price.unit == "piece" ? "1piece" : "100#{price.unit}" %></span>
+              <span class="price-lists-unit"> / <%= price.unit == "piece" ? "1piece" : "100#{price.unit}" %></span>
             </div>
-            <div style="font-size: 0.7rem; color: #999;">
+            <div class="price-lists-total-price">
               (税込 ¥<%= price.price %> / <%= price.quantity %><%= price.unit %>)
             </div>
           </div>
@@ -36,9 +32,9 @@
       </div>
     <% end %>
   <% else %>
-    <p style="text-align: center; color: #999; margin-top: 50px;">まだ記録がありません</p>
+    <p class="price-lists-empty">まだ記録がありません</p>
   <% end %>
 
-  <%= link_to "商品一覧へ戻る", items_path, style: "display: block; text-align: center; margin-top: 30px; color: #999; text-decoration: none; font-size: 0.9rem;" %>
+  <%= link_to "商品一覧へ戻る", items_path, class: "back-to-top" %>
 </div>
 <%= render "shared/footer" %>

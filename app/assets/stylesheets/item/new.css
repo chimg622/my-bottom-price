@@ -1,0 +1,42 @@
+.item-new-title{
+  color: #457b9d; 
+  font-size: 1.2rem; 
+  margin-bottom: 20px;
+}
+
+.item-new-box{
+  margin-bottom: 20px;
+}
+
+.item-new-label{
+  display: block; 
+  font-size: 0.8rem; 
+  color: #666; 
+  margin-bottom: 5px;
+}
+
+.item-new-input{
+  width: 100%; 
+  padding: 15px; 
+  border-radius: 10px; 
+  border: 1px solid #a8dadc; 
+  font-size: 1rem;
+}
+
+.item-new-unit{
+  display: flex; 
+  gap: 10px;
+}
+
+.item-new-button{
+  width: 100%; 
+  padding: 18px; 
+  background-color: #457b9d; 
+  color: white; 
+  border: none; 
+  border-radius: 30px; 
+  font-size: 1.1rem; 
+  font-weight: bold; 
+  box-shadow: 0 4px 10px rgba(69,123,157,0.2); 
+  margin-top: 10px;
+}

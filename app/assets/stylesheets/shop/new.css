@@ -1,0 +1,33 @@
+.shop-new-title{
+  color: #457b9d; 
+  font-size: 1.2rem; 
+  margin-bottom: 20px;
+}
+
+.shop-new-box{
+  margin-bottom: 20px;
+}
+
+.shop-new-label{
+  display: block; 
+  font-size: 0.8rem; 
+  color: #666;
+}
+
+.shop-new-input{
+  width: 100%; 
+  padding: 12px;
+  border-radius: 8px; 
+  border: 1px solid #a8dadc;
+}
+
+.shop-new-button{
+  width: 100%; 
+  padding: 16px; 
+  background-color: #457b9d; 
+  color: white; 
+  border: none; 
+  border-radius: 30px; 
+  font-weight: bold; 
+  cursor: pointer;
+}

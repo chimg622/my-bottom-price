@@ -1,34 +1,33 @@
 <%= render "shared/header" %>
-<div style="padding: 20px; background-color: #f9fbfd; min-height: 100vh;">
-  <h2 style="color: #457b9d; font-size: 1.2rem; margin-bottom: 20px;">商品を新規登録</h2>
+<div class="item-container">
+  <h2 class="item-new-title">商品を新規登録</h2>
 
   <%= form_with model: @item, local: true do |f| %>
     
     <%# 商品名入力 %>
-    <div style="margin-bottom: 20px;">
-      <%= f.label :name, "商品名", style: "display: block; font-size: 0.8rem; color: #666; margin-bottom: 5px;" %>
-      <%= f.text_field :name, placeholder: "例：アタックZERO 詰め替え", style: "width: 100%; padding: 15px; border-radius: 10px; border: 1px solid #a8dadc; font-size: 1rem;" %>
+    <div class="item-new-box">
+      <%= f.label :name, "商品名", class: "item-new-label" %>
+      <%= f.text_field :name, placeholder: "例：アタックZERO 詰め替え", class: "item-new-input" %>
     </div>
 
     <%# カテゴリ選択（プルダウン） %>
-    <div style="margin-bottom: 20px;">
-      <%= f.label :category_id, "カテゴリ", style: "display: block; font-size: 0.8rem; color: #666; margin-bottom: 5px;" %>
-      <%= f.collection_select :category_id, @categories, :id, :name, { prompt: "選択してください" }, { style: "width: 100%; padding: 15px; border-radius: 10px; border: 1px solid #a8dadc; background: white; font-size: 1rem;" } %>
+    <div class="item-new-box">
+      <%= f.label :category_id, "カテゴリ", class: "item-new-label" %>
+      <%= f.collection_select :category_id, @categories, :id, :name, { prompt: "選択してください" }, { class: "item-new-input" } %>
     </div>
 
     <%# 基本単位（Enum）の選択 %>
-    <div style="margin-bottom: 30px;">
-      <%= f.label :unit, "基本の単位", style: "display: block; font-size: 0.8rem; color: #666; margin-bottom: 5px;" %>
-      <div style="display: flex; gap: 10px;">
-        <%# Enumの選択肢をラジオボタン風に表示（後でJSで装飾も可能） %>
-        <%= f.select :unit, Item.units.keys.map { |k| [k, k] }, {}, { style: "width: 100%; padding: 15px; border-radius: 10px; border: 1px solid #a8dadc; background: white;" } %>
+    <div class="item-new-box">
+      <%= f.label :unit, "基本の単位", class: "item-new-label" %>
+      <div class="item-new-unit">
+        <%= f.select :unit, Item.units.keys.map { |k| [k, k] }, {}, { class: "item-new-input" } %>
       </div>
     </div>
 
-    <%= f.submit "商品を登録する", style: "width: 100%; padding: 18px; background-color: #457b9d; color: white; border: none; border-radius: 30px; font-size: 1.1rem; font-weight: bold; box-shadow: 0 4px 10px rgba(69,123,157,0.2);" %>
+    <%= f.submit "商品を登録する", class: "item-new-button" %>
 
   <% end %>
 
-  <%= link_to "戻る", root_path, style: "display: block; text-align: center; margin-top: 25px; color: #999; text-decoration: none; font-size: 0.9rem;" %>
+  <%= link_to "戻る", root_path, class: "back-to-top" %>
 </div>
 <%= render "shared/footer" %>

@@ -1,19 +1,19 @@
 <%= render "shared/header" %>
-<div style="padding: 20px; background-color: #f9fbfd; min-height: 100vh;">
-  <h2 style="color: #457b9d; font-size: 1.1rem; margin-bottom: 20px;">価格を記録する</h2>
+<div class="price-container">
+  <h2 class="price-new-title">価格を記録する</h2>
 
   <%= form_with model: @price, local: true do |f| %>
     
     <%# 商品選択 %>
-    <div style="margin-bottom: 15px;">
-      <%= f.label :item_id, "商品名", style: "font-size: 0.8rem; color: #666;" %>
-      <%= f.collection_select :item_id, @items, :id, :name, { prompt: "選択してください" }, { style: "width: 100%; padding: 12px; border-radius: 8px; border: 1px solid #a8dadc;" } %>
+    <div class="price-new-box">
+      <%= f.label :item_id, "商品名", class: "price-new-label" %>
+      <%= f.collection_select :item_id, @items, :id, :name, { prompt: "選択してください" }, { class: "price-new-input" } %>
     </div>
 
     <%# 店舗選択 %>
-    <div style="margin-bottom: 15px;">
-      <%= f.label :shop_id, "購入店舗", style: "font-size: 0.8rem; color: #666;" %>
-      <%= f.collection_select :shop_id, @shops, :id, :name, { prompt: "選択してください" }, { style: "width: 100%; padding: 12px; border-radius: 8px; border: 1px solid #a8dadc;" } %>
+    <div class="price-new-box">
+      <%= f.label :shop_id, "購入店舗", class: "price-new-label" %>
+      <%= f.collection_select :shop_id, @shops, :id, :name, { prompt: "選択してください" }, { class: "price-new-input" } %>
     </div>
 
     <%# 1. コントローラーの範囲を指定 (data-controller) %>
@@ -24,7 +24,7 @@
         <%# 2. 入力項目にターゲットとアクションを設定 (data-price-calculator-target / data-action) %>
         <div style="display: flex; gap: 10px;">
           <div>
-            <%= f.label :price, "価格", style: "font-size: 0.8rem; color: #666;" %>
+            <%= f.label :price, "価格", class: "price-new-label" %>
             <%= f.number_field :price, 
                 data: { 
                   price_calculator_target: "price", 
@@ -33,7 +33,7 @@
                 class: "auth-input" %>
           </div>
           <div>
-            <%= f.label :quantity, "内容量", style: "font-size: 0.8rem; color: #666;" %>
+            <%= f.label :quantity, "内容量", class: "price-new-label" %>
             <%= f.number_field :quantity, 
                 data: { 
                   price_calculator_target: "quantity", 
@@ -44,7 +44,7 @@
         </div>
 
         <div>
-          <%= f.label :unit, "単位", style: "font-size: 0.8rem; color: #666;" %>
+          <%= f.label :unit, "単位", class: "price-new-label" %>
           <%= f.select :unit, Price.units.keys.map { |k| [k, k] }, {}, 
               data: { 
                 price_calculator_target: "unit", 
@@ -54,9 +54,9 @@
         </div>
 
         <%# 3. 計算結果を表示する場所 (data-price-calculator-target) %>
-        <div style="background: #f1faee; padding: 15px; border-radius: 10px; text-align: center; margin-bottom: 20px;">
-          <span style="font-size: 0.8rem; color: #666;"><span data-price-calculator-target="unitLabel">100gram</span>あたりの価格</span>
-          <div style="font-size: 1.5rem; font-weight: bold; color: #457b9d;" data-price-calculator-target="result">
+        <div class="price-new-calc">
+          <span class="price-new-label"><span data-price-calculator-target="unitLabel">100gram</span>あたりの価格</span>
+          <div class="price-new-result" data-price-calculator-target="result">
             ¥0
           </div>
         </div>
