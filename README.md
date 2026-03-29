@@ -13,8 +13,8 @@ https://my-bottom-price.onrender.com
 # テスト用アカウント
 ・Basic認証ID：admin<br>
 ・Basic認証パスワード：2222<br>
-・メールアドレス：abc@abc<br>
-・パスワード：abc123
+・メールアドレス：test@test<br>
+・パスワード：test123
 
 
 # 利用方法
