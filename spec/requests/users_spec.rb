@@ -25,21 +25,21 @@ RSpec.describe 'Users', type: :request do
     end
   end
 
-  describe 'GET /users' do
+  describe 'GET /user' do
     context 'ログインしている場合' do
       before do
         sign_in user
       end
 
       it '正常にレスポンスを返す' do
-        get users_index_path, headers: auth_headers
+        get user_path, headers: auth_headers
         expect(response).to have_http_status(200)
       end
     end
 
     context 'ログインしていない場合' do
       it 'ログイン画面にリダイレクトされる' do
-        get users_index_path, headers: auth_headers
+        get user_path, headers: auth_headers
         expect(response).to redirect_to(new_user_session_path)
       end
     end
