@@ -86,7 +86,7 @@ belongs_to :item
 ## shopsテーブル
 |Column       |Type       |Options                        |
 |-------------|-----------|-------------------------------|
-|name         |string     |null: false                    |
+|name         |string     |null: false, unique: true      |
 |address      |string     |null: true                     |
 |user         |references |null: false, foreign_key: true |
 
