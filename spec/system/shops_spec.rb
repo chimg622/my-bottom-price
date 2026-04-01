@@ -8,7 +8,7 @@ RSpec.describe '店舗登録', type: :system do
     it 'ログインしたユーザーは店舗登録ができる' do
       # トップページに遷移する
       visit "http://#{ENV['BASIC_AUTH_USER']}:#{ENV['BASIC_AUTH_PASSWORD']}@127.0.0.1:#{Capybara.current_session.server.port}#{root_path}"
-      # トップページに新規登録ボタンがあることを確認
+      # トップページにログインボタンがあることを確認
       expect(page).to have_content('ログイン')
       # ログインページへ移動する
       visit new_user_session_path
@@ -33,6 +33,8 @@ RSpec.describe '店舗登録', type: :system do
       visit shops_path
       expect(page).to have_content('テスト店舗')
     end
+  end
+  context '店舗登録ができないとき' do
     it 'ログインしていないユーザーは店舗登録できない' do
       # 店舗登録画面に遷移する
       visit "http://#{ENV['BASIC_AUTH_USER']}:#{ENV['BASIC_AUTH_PASSWORD']}@127.0.0.1:#{Capybara.current_session.server.port}#{new_shop_path}"
