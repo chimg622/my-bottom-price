@@ -1,6 +1,6 @@
 <%= render "shared/header" %>
 <div class="shop-container">
-  <h2 class="shop-new-title">新しい店舗を登録</h2>
+  <h2 class="shop-new-title">店舗を編集</h2>
 
   <%= form_with model: @shop, local: true do |f| %>
   <%= render 'shared/error_messages', model: @shop %>
@@ -14,7 +14,7 @@
       <%= f.text_field :address, placeholder: "例：〇〇区△△町 1-2-3", class: "shop-new-input" %>
     </div>
 
-    <%= f.submit "店舗を保存する", class: "shop-new-button" %>
+    <%= f.submit "店舗を変更する", class: "shop-new-button" %>
   <% end %>
 
   <%= link_to "戻る", shops_path, class: "back-to-top" %>
