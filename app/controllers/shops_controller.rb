@@ -1,9 +1,9 @@
 class ShopsController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_shop, only: [:edit, :update]
+  before_action :set_shop, only: [:edit, :update, :destroy]
 
   def index
-    @shops = current_user.shops.order(created_at: :desc)
+    @shops = current_user.shops.includes(:prices).order(created_at: :desc)
   end
 
   def new
@@ -28,6 +28,11 @@ class ShopsController < ApplicationController
     else
       render :edit, status: :unprocessable_entity
     end
+  end
+
+  def destroy
+    @shop.destroy
+    redirect_to shops_path
   end
 
   private
