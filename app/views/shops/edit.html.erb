@@ -1,6 +1,6 @@
 <%= render "shared/header" %>
 <div class="shop-container">
-  <h2 class="shop-new-title">店舗を編集</h2>
+  <h2 class="shop-new-title">店舗を編集•削除</h2>
 
   <%= form_with model: @shop, local: true do |f| %>
   <%= render 'shared/error_messages', model: @shop %>
@@ -14,7 +14,9 @@
       <%= f.text_field :address, placeholder: "例：〇〇区△△町 1-2-3", class: "shop-new-input" %>
     </div>
 
-    <%= f.submit "変更する", class: "shop-new-button" %>
+    <%= f.submit "変更する", class: "shop-edit-button" %>
+    <%= link_to "削除する", shop_path(@shop), data: { turbo_method: :delete, turbo_confirm: "本当に削除しますか？" }, class: "shop-delete-button" %>
+
   <% end %>
 
   <%= link_to "戻る", shops_path, class: "back-to-top" %>
