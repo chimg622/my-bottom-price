@@ -34,7 +34,7 @@
   <% else %>
     <p class="price-lists-empty">まだ記録がありません</p>
   <% end %>
-
+  <%= link_to "価格を新しく登録する", new_price_path(item_id: @item.id), class: "price-add-button" %>
   <%= link_to "商品一覧へ戻る", items_path, class: "back-to-top" %>
 </div>
 <%= render "shared/footer" %>
