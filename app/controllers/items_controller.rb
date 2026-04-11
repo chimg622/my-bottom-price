@@ -1,5 +1,6 @@
 class ItemsController < ApplicationController
   before_action :authenticate_user!
+  before_action :set_item, only: [:edit, :update, :destroy]
 
   def index
     @items = Item.where(user_id: current_user.id).includes(:category).order(created_at: :desc)
@@ -20,7 +21,28 @@ class ItemsController < ApplicationController
     end
   end
 
+  def edit
+    @categories = current_user.categories
+  end
+
+  def update
+    if @item.update(item_params)
+      redirect_to items_path
+    else
+      render :edit, status: :unprocessable_entity
+    end
+  end
+
+  def destroy
+    @item.destroy
+    redirect_to items_path
+  end
+
   private
+
+  def set_item
+    @item = current_user.items.find(params[:id])
+  end
 
   def item_params
     params.require(:item).permit(:name, :unit, :category_id).merge(user_id: current_user.id)

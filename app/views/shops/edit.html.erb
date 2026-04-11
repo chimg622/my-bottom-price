@@ -14,8 +14,10 @@
       <%= f.text_field :address, placeholder: "例：〇〇区△△町 1-2-3", class: "shop-new-input" %>
     </div>
 
-    <%= f.submit "変更する", class: "shop-edit-button" %>
-    <%= link_to "削除する", shop_path(@shop), data: { turbo_method: :delete, turbo_confirm: "本当に削除しますか？" }, class: "shop-delete-button" %>
+    <div>
+      <%= f.submit "変更する", class: "shop-edit-button" %>
+      <%= link_to "削除する", shop_path(@shop), data: { turbo_method: :delete, turbo_confirm: "本当に削除しますか？" }, class: "shop-delete-button" %>
+    </div>
 
   <% end %>
 

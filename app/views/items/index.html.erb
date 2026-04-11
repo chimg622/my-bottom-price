@@ -22,7 +22,7 @@
             </div>
 
           <div class="item-list-prices">
-            <%= link_to "価格を記録 >", new_price_path(item_id: item.id), class: "item-list-price" %>
+            <%= link_to "商品の編集•削除 >", edit_item_path(item), class: "item-list-price" %>
             <%= link_to "底値をチェック >", prices_path(item_id: item.id), class: "item-list-btm-price" %>
           </div>
         </div>

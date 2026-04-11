@@ -1,0 +1,34 @@
+<%= render "shared/header" %>
+<div class="item-container">
+  <h2 class="item-new-title">商品の編集•削除</h2>
+
+  <%= form_with model: @item, local: true do |f| %>
+    
+    <%# 商品名入力 %>
+    <div class="item-new-box">
+      <%= f.label :name, "商品名", class: "item-new-label" %>
+      <%= f.text_field :name, placeholder: "例：アタックZERO 詰め替え", class: "item-new-input" %>
+    </div>
+
+    <%# カテゴリ選択（プルダウン） %>
+    <div class="item-new-box">
+      <%= f.label :category_id, "カテゴリ", class: "item-new-label" %>
+      <%= f.collection_select :category_id, @categories, :id, :name, { prompt: "選択してください" }, { class: "item-new-input" } %>
+    </div>
+
+    <%# 基本単位（Enum）の選択 %>
+    <div class="item-new-box">
+      <%= f.label :unit, "基本の単位", class: "item-new-label" %>
+      <div class="item-new-unit">
+        <%= f.select :unit, Item.units.keys.map { |k| [k, k] }, {}, { class: "item-new-input" } %>
+      </div>
+    </div>
+    <div>
+      <%= f.submit "変更する", class: "shop-edit-button" %>
+      <%= link_to "削除する", item_path(@item), data: { turbo_method: :delete, turbo_confirm: "本当に削除しますか？" }, class: "shop-delete-button" %>
+    </div>
+  <% end %>
+
+  <%= link_to "戻る", root_path, class: "back-to-top" %>
+</div>
+<%= render "shared/footer" %>
