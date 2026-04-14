@@ -18,13 +18,18 @@
 }
 
 .item-add-button{
-  background: #a8dadc; 
-  color: #457b9d; 
-  padding: 8px 15px; 
+  display: block;
+  text-align: center;
+  box-sizing: border-box;
+  width: 100%; 
+  padding: 16px; 
+  background: #457b9d; 
+  color: white; 
   border-radius: 20px; 
   text-decoration: none; 
-  font-size: 0.8rem; 
+  font-size: 1rem; 
   font-weight: bold;
+  margin-bottom: 20px;
 }
 
 .item-lists{

@@ -2,7 +2,9 @@
 <div class="shop-container">
   <div class="shop-header">
     <h2 class="shop-title">登録したお店一覧</h2>
-    <%= link_to "+ 追加", new_shop_path, class: "item-add-button" %>
+  </div>
+  <div>
+    <%= link_to "+ 店舗の新規登録", new_shop_path, class: "item-add-button" %>
   </div>
 
   <% if @shops.any? %>
