@@ -5,36 +5,34 @@ class PricesController < ApplicationController
       @item = current_user.items.find(params[:item_id])
       @prices = @item.prices.includes(:shop).order(unit_price: :asc)
     else
-      @prices = current_user.prices.includes(:item, :shop).order(created_at: :desc)
+      redirect_to root_path
     end
   end
 
   def new
     @price = Price.new
-    @items = current_user.items
-    @shops = current_user.shops
+    set_form_collections
     @price.item_id = params[:item_id] if params[:item_id]
   end
 
   def create
-    @price = current_user.prices.build(price_params)
-    if @price.price.present? && @price.quantity.present? && @price.quantity > 0
-      base = @price.unit == 'piece' ? 1 : 100
-      @price.unit_price = (@price.price.to_f / @price.quantity) * base
-    end
-
+    @price = Price.new(price_params)
     if @price.save
-      redirect_to items_path, notice: '価格を記録しました！'
+      redirect_to items_path
     else
-      @items = current_user.items
-      @shops = current_user.shops
+      set_form_collections
       render :new, status: :unprocessable_entity
     end
   end
 
   private
 
+  def set_form_collections
+    @items = current_user.items
+    @shops = current_user.shops
+  end
+
   def price_params
-    params.require(:price).permit(:item_id, :shop_id, :price, :quantity, :unit)
+    params.require(:price).permit(:item_id, :shop_id, :price, :quantity, :unit).merge(user_id: current_user.id)
   end
 end

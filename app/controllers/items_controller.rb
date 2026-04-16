@@ -3,12 +3,12 @@ class ItemsController < ApplicationController
   before_action :set_item, only: [:edit, :update, :destroy]
 
   def index
-    @items = Item.where(user_id: current_user.id).includes(:category).order(created_at: :desc)
+    @items = current_user.items.includes(:category).order(created_at: :desc)
   end
 
   def new
     @item = Item.new
-    @categories = Category.where(user_id: current_user.id)
+    @categories = current_user.categories
   end
 
   def create
@@ -16,7 +16,7 @@ class ItemsController < ApplicationController
     if @item.save
       redirect_to root_path
     else
-      @categories = Category.where(user_id: current_user.id)
+      @categories = current_user.categories
       render :new, status: :unprocessable_entity
     end
   end
