@@ -2,8 +2,7 @@
 <div class="price-container">
   <h2 class="price-new-title">価格を記録する</h2>
 
-  <%= form_with model: @price, local: true do |f| %>
-    
+  <%= form_with model: @price, local: true, data: { controller: "price-calculator" } do |f| %>
     <%# 商品選択 %>
     <div class="price-new-box">
       <%= f.label :item_id, "商品名", class: "price-new-label" %>
@@ -12,58 +11,51 @@
 
     <%# 店舗選択 %>
     <div class="price-new-box">
-      <%= f.label :shop_id, "購入店舗", class: "price-new-label" %>
+      <%= f.label :shop_id, "店舗名", class: "price-new-label" %>
       <%= f.collection_select :shop_id, @shops, :id, :name, { prompt: "選択してください" }, { class: "price-new-input" } %>
     </div>
 
-    <%# 1. コントローラーの範囲を指定 (data-controller) %>
-    <div data-controller="price-calculator">
-      
-      <%= form_with model: @price, local: true do |f| %>
-        
-        <%# 2. 入力項目にターゲットとアクションを設定 (data-price-calculator-target / data-action) %>
-        <div style="display: flex; gap: 10px;">
-          <div>
-            <%= f.label :price, "価格", class: "price-new-label" %>
-            <%= f.number_field :price, 
-                data: { 
-                  price_calculator_target: "price", 
-                  action: "input->price-calculator#calculate" 
-                }, 
-                class: "auth-input" %>
-          </div>
-          <div>
-            <%= f.label :quantity, "内容量", class: "price-new-label" %>
-            <%= f.number_field :quantity, 
-                data: { 
-                  price_calculator_target: "quantity", 
-                  action: "input->price-calculator#calculate" 
-                }, 
-                class: "auth-input" %>
-          </div>
-        </div>
-
-        <div>
-          <%= f.label :unit, "単位", class: "price-new-label" %>
-          <%= f.select :unit, Price.units.keys.map { |k| [k, k] }, {}, 
-              data: { 
-                price_calculator_target: "unit", 
-                action: "change->price-calculator#calculate" 
-              }, 
-              class: "auth-input" %>
-        </div>
-
-        <%# 3. 計算結果を表示する場所 (data-price-calculator-target) %>
-        <div class="price-new-calc">
-          <span class="price-new-label"><span data-price-calculator-target="unitLabel">100gram</span>あたりの価格</span>
-          <div class="price-new-result" data-price-calculator-target="result">
-            ¥0
-          </div>
-        </div>
-
-        <%= f.submit "保存する", class: "auth-btn" %>
-      <% end %>
+    <%# 入力項目にターゲットとアクションを設定 %>
+    <div style="display: flex; gap: 10px; width: 100%;">
+      <div style="flex: 1;">
+        <%= f.label :price, "価格", class: "price-new-label" %>
+        <%= f.number_field :price, 
+            data: { 
+              price_calculator_target: "price", 
+              action: "input->price-calculator#calculate" 
+            }, 
+            class: "auth-input" %>
+      </div>
+      <div style="flex: 1;">
+        <%= f.label :quantity, "内容量", class: "price-new-label" %>
+        <%= f.number_field :quantity, 
+            data: { 
+              price_calculator_target: "quantity", 
+              action: "input->price-calculator#calculate" 
+            }, 
+            class: "auth-input" %>
+      </div>
     </div>
+
+    <div>
+      <%= f.label :unit, "単位", class: "price-new-label" %>
+      <%= f.select :unit, Price.units.keys.map { |k| [k, k] }, {}, 
+          data: { 
+            price_calculator_target: "unit", 
+            action: "change->price-calculator#calculate" 
+          }, 
+          class: "auth-input" %>
+    </div>
+
+    <%# 計算結果を表示する場所 %>
+    <div class="price-new-calc">
+      <span class="price-new-label"><span data-price-calculator-target="unitLabel">100gram</span>あたりの価格</span>
+      <div class="price-new-result" data-price-calculator-target="result">
+        ¥0
+      </div>
+    </div>
+
+    <%= f.submit "保存する", class: "auth-btn" %>
   <% end %>
 </div>
 <%= render "shared/footer" %>

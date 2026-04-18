@@ -18,7 +18,7 @@ class PricesController < ApplicationController
   def create
     @price = Price.new(price_params)
     if @price.save
-      redirect_to items_path
+      redirect_to prices_path(item_id: @price.item_id)
     else
       set_form_collections
       render :new, status: :unprocessable_entity
