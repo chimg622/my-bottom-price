@@ -1,5 +1,4 @@
 class PricesController < ApplicationController
-  before_action :authenticate_user!
   def index
     if params[:item_id]
       @item = current_user.items.find(params[:item_id])
