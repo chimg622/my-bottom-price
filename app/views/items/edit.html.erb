@@ -3,7 +3,8 @@
   <h2 class="item-new-title">商品の編集•削除</h2>
 
   <%= form_with model: @item, local: true do |f| %>
-    
+    <%= render 'shared/error_messages', model: @item %>
+
     <%# 商品名入力 %>
     <div class="item-new-box">
       <%= f.label :name, "商品名", class: "item-new-label" %>

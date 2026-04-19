@@ -3,6 +3,7 @@
   <h2 class="price-new-title">価格を記録する</h2>
 
   <%= form_with model: @price, local: true, data: { controller: "price-calculator" } do |f| %>
+    <%= render 'shared/error_messages', model: @price %>
     <%# 商品選択 %>
     <div class="price-new-box">
       <%= f.label :item_id, "商品名", class: "price-new-label" %>
