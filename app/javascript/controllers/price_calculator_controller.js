@@ -8,9 +8,10 @@ export default class extends Controller {
 
   // 入力があった時に実行される関数
   calculate() {
-    const price = parseFloat(this.priceTarget.value)
-    const quantity = parseFloat(this.quantityTarget.value)
-    const unit = this.unitTarget.value
+    const price = parseFloat(this.priceTarget.value) //金額入力値を取得し、計算ができるように浮動小数点に変換
+    const quantity = parseFloat(this.quantityTarget.value) //分量入力値を数値に変換
+    const unit = this.unitTarget.value //単位を取得
+
 
     // 単位ラベルの更新
     if (this.hasUnitLabelTarget) {
